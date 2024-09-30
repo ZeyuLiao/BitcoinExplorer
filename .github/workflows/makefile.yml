@@ -1,0 +1,27 @@
+name: Makefile CI
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Get tag name
+      id: get_tag
+      run: echo "TAG_NAME=${GITHUB_REF##*/}" >> $GITHUB_ENV
+        
+    - name: Build binary
+      run: make build
+
+    - name: Build docker image
+      run: make docker-image
+
+    - name: Run docker image
+      run: make docker-run VERSION==${{ env.TAG_NAME }} RPC_USER=${{ secrets.RPC_USERNAME }} RPC_PASSWORD=${{ secrets.RPC_PASSWORD }}
