@@ -12,12 +12,16 @@ struct Args {
     /// The password for the RPC server
     #[arg(long, required = true)]
     pwd: String,
+    /// The RPC server URL
+    #[arg(long, default_value = "http://127.0.0.1:8332")]
+    rpc_url: String,
+
 }
 
 fn best_ten() -> Result<(), Box<dyn Error>> {
     
     let args = Args::parse();
-    let rpc_url = "http://127.0.0.1:8332";
+    let rpc_url = &args.rpc_url;
     let auth = Auth::UserPass(args.user.to_string(), args.pwd.to_string());
     println!("Connecting to Bitcoin Core RPC server at {}", rpc_url);
     println!("Authenticating as user {}", args.user);
