@@ -5,8 +5,11 @@ a bitcoin explorer to view on chain and off chain metrics
 
 ### Main features
 Extract block information from bitcoin-core and upload the information to the rds mysql database
-run binary will create 
-Binary file is located at [here](Ingestion/target/release/Ingestion) run binary with required rpc username and password
+
+run binary will create cheduled tasks to extract data every miniutes
+Binary file is located at [here](Ingestion/target/release/Ingestion) 
+
+run binary with required rpc username and password
 ```
 Usage: Ingestion [OPTIONS] --user <USER> --pwd <PWD>
 
@@ -17,3 +20,19 @@ Options:
   -h, --help               Print help
   -V, --version            Print version
 ```
+
+### Build Process
+`make build`: build binary file from rust project
+
+`make docker-build VERSION={}`: build docker image
+
+`make docker-run VERSION={} RPC_USER={} RPC_PASSWORD={}`: run container with rpc username and password
+
+### Release Process:
+#### Auto Release:
+`make release VERSION={}`: this command will trigger github actions to build and tag with version and then push images to dockerhub
+#### Mannual Release:
+In order github action occurs any error, you can push image to dockerhub mannully
+
+`make docker-push VERSION={}`: push local image to dockerhub
+
