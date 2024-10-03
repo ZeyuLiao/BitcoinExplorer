@@ -1,7 +1,8 @@
 # Variables
 PROJECT_NAME = bitcoin-ingestion
+DOCKERHUB = zoliao2024
 PROJECT_VERSION = $(VERSION)
-DOCKER_IMAGE_NAME = $(PROJECT_NAME):$(PROJECT_VERSION)
+DOCKER_IMAGE_NAME = $(DOCKERHUB)/$(PROJECT_NAME):$(PROJECT_VERSION)
 DOCKER_CONTAINER_NAME = $(PROJECT_NAME)-container
 RPC_USER = $(RPC_USER)
 RPC_PASSWORD = $(RPC_PASSWORD)
@@ -19,6 +20,11 @@ build:
 .PHONY: docker-build
 docker-build:
 	cd ./Ingestion && docker build -t $(DOCKER_IMAGE_NAME) .
+
+# Push docker image to docker hub
+.PHONY: docker-push
+docker-push:
+	docker push $(DOCKER_IMAGE_NAME)
 
 # Run docker container
 .PHONY: docker-run
@@ -47,5 +53,6 @@ bitcoin-core:
 # Release by tag version and y/n to confirm
 .PHONY: release
 release:
+
 	git tag -a $(PROJECT_VERSION) -m "Release version $(PROJECT_VERSION)"
 	git push origin $(PROJECT_VERSION)
