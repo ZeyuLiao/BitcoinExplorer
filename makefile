@@ -1,11 +1,11 @@
 # Variables
-PROJECT_NAME = bitcoin-ingestion
-DOCKERHUB = zoliao2024
-PROJECT_VERSION = $(VERSION)
-DOCKER_IMAGE_NAME = $(DOCKERHUB)/$(PROJECT_NAME):$(PROJECT_VERSION)
-DOCKER_CONTAINER_NAME = $(PROJECT_NAME)-container
-RPC_USER = $(RPC_USER)
-RPC_PASSWORD = $(RPC_PASSWORD)
+PROJECT_NAME=bitcoin-ingestion
+DOCKERHUB=zoliao2024
+PROJECT_VERSION=$(VERSION)
+DOCKER_IMAGE_NAME=$(DOCKERHUB)/$(PROJECT_NAME):$(PROJECT_VERSION)
+DOCKER_CONTAINER_NAME=$(PROJECT_NAME)-container
+RPC_USER=$(RPC_USER)
+RPC_PASSWORD=$(RPC_PASSWORD)
 # get rpc url from LAN ip
 #RPC_URL = http://$(shell ifconfig eth0 | sed -En 's/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p'):8332
 # set LAN ip for btc-core container
@@ -41,11 +41,12 @@ docker-run:
 # Run bitcoin-core container
 .PHONY: bitcoin-core
 bitcoin-core:
+	docker pull ruimarinho/bitcoin-core:latest
 	docker run -d \
 	--name=bitcoin \
 	--network=bitExp-network \
 	--ip=$(RPC_URL) \
-	-v /home/zoey/.bitcoin/bitcoin.conf:/home/bitcoin/.bitcoin/bitcoin.conf \
+	-v $(HOME)/.bitcoin/bitcoin.conf:/home/bitcoin/.bitcoin/bitcoin.conf \
 	-p 8332:8332 \
 	-p 8333:8333 \
 	ruimarinho/bitcoin-core:latest
