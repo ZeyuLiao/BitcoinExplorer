@@ -35,8 +35,7 @@ docker-push:
 # Run docker container
 .PHONY: docker-run
 docker-run:
-	docker run \
-	--rm \
+	docker run -d \
 	--network bitExp-network \
 	--name $(DOCKER_CONTAINER_NAME) \
 	$(DOCKER_IMAGE_NAME) \
@@ -46,6 +45,12 @@ docker-run:
 	--db-user $(DB_USER) \
 	--db-pwd $(DB_PASSWORD) \
 	--db-host $(DB_HOST)
+
+# Clean docker container
+.PHONY: docker-clean
+docker-clean:
+	docker stop $(DOCKER_CONTAINER_NAME)
+	docker rm $(DOCKER_CONTAINER_NAME)
 
 # Run bitcoin-core container
 .PHONY: bitcoin-core
