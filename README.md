@@ -11,14 +11,17 @@ Binary file is located at [here](Ingestion/target/release/Ingestion)
 
 run binary with required rpc username and password
 ```
-Usage: Ingestion [OPTIONS] --user <USER> --pwd <PWD>
+Usage: Ingestion [OPTIONS] --rpc-user <RPC_USER> --rpc-pwd <RPC_PWD> --db-user <DB_USER> --db-pwd <DB_PWD>
 
 Options:
-      --user <USER>        The user name for the RPC server
-      --pwd <PWD>          The password for the RPC server
-      --rpc-url <RPC_URL>  The RPC server URL [default: http://127.0.0.1:8332]
-  -h, --help               Print help
-  -V, --version            Print version
+      --rpc-user <RPC_USER>  The user name for the RPC server
+      --rpc-pwd <RPC_PWD>    The password for the RPC server
+      --rpc-url <RPC_URL>    The RPC server URL [default: http://127.0.0.1:8332]
+      --db-user <DB_USER>    The db user name
+      --db-pwd <DB_PWD>      The db password
+      --db-host <DB_HOST>    The db host [default: localhost]
+  -h, --help                 Print help
+  -V, --version              Print version
 ```
 
 ### Build Process
@@ -26,7 +29,7 @@ Options:
 
 `make docker-build VERSION={}`: build docker image
 
-`make docker-run VERSION={} RPC_USER={} RPC_PASSWORD={}`: run container with rpc username and password
+`make docker-run VERSION={} RPC_USER={} RPC_PASSWORD={} RPC_URL={} DB_USER={} DB_PASSWORD={} DB_HOST={}`: run container with rpc and db variables
 
 ### Release Process:
 #### Auto Release:
