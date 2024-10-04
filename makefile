@@ -51,6 +51,12 @@ bitcoin-core:
 	-p 8333:8333 \
 	ruimarinho/bitcoin-core:latest
 
+# Clean bitcoin-core container
+.PHONY: bitcoin-core-clean
+bitcoin-core-clean:
+	docker stop bitcoin
+	docker rm bitcoin
+
 # Release by tag version and y/n to confirm
 .PHONY: release
 release:
