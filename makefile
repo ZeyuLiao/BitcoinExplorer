@@ -4,15 +4,7 @@ DOCKERHUB=zoliao2024
 PROJECT_VERSION=$(VERSION)
 DOCKER_IMAGE_NAME=$(DOCKERHUB)/$(PROJECT_NAME):$(PROJECT_VERSION)
 DOCKER_CONTAINER_NAME=$(PROJECT_NAME)-container
-RPC_USER=$(RPC_USER)
-RPC_PASSWORD=$(RPC_PASSWORD)
-RPC_URL = ${RPC_URL}
-#RPC_URL = 172.18.0.10
-DB_USER=$(DB_USER)
-DB_PASSWORD=$(DB_PASSWORD)
-DB_HOST=$(DB_HOST)
-DB_PORT=$(DB_PORT)
-DB_NAME=$(DB_NAME)
+
 # get rpc url from LAN ip
 #RPC_URL = http://$(shell ifconfig eth0 | sed -En 's/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p'):8332
 # set LAN ip for btc-core container
