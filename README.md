@@ -7,11 +7,11 @@ a bitcoin explorer to view on chain and off chain metrics
 Extract block information from bitcoin-core and upload the information to the rds mysql database
 
 run binary will create cheduled tasks to extract data every miniutes
-Binary file is located at [here](Ingestion/target/release/Ingestion) 
+Binary file is located at [here](ingestion/target/release/ingestion) 
 
 run binary with required rpc username and password
 ```
-Usage: Ingestion [OPTIONS] --rpc-user <RPC_USER> --rpc-pwd <RPC_PWD> --db-user <DB_USER> --db-pwd <DB_PWD>
+Usage: ingestion [OPTIONS] --rpc-user <RPC_USER> --rpc-pwd <RPC_PWD> --db-user <DB_USER> --db-pwd <DB_PWD>
 
 Options:
       --rpc-user <RPC_USER>  The user name for the RPC server

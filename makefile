@@ -12,12 +12,12 @@ DOCKER_CONTAINER_NAME=$(PROJECT_NAME)-container
 # Build rust project with PHONY
 .PHONY: build
 build:
-	cd ./Ingestion && cargo build --release
+	cd ./ingestion && cargo build --release
 
 # Build docker image
 .PHONY: docker-build
 docker-build:
-	cd ./Ingestion && docker build -t $(DOCKER_IMAGE_NAME) .
+	cd ./ingestion && docker build -t $(DOCKER_IMAGE_NAME) .
 
 # Push docker image to docker hub
 .PHONY: docker-push
@@ -34,9 +34,9 @@ docker-run:
 	--rpc-user $(RPC_USER) \
 	--rpc-pwd $(RPC_PASSWORD) \
 	--rpc-url $(RPC_URL) \
-	--db-user $(DB_USER) \
-	--db-pwd $(DB_PASSWORD) \
-	--db-host $(DB_HOST)
+	--db-user $(MYSQL_USER) \
+	--db-pwd $(MYSQL_PASSWORD) \
+	--db-host $(MYSQL_HOST)
 
 # Clean docker container
 .PHONY: docker-clean

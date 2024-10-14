@@ -30,6 +30,15 @@ struct Args {
     /// The db host
     #[arg(long, default_value = "localhost")]
     db_host: String,
+    /// The redis host
+    #[arg(long, default_value = "localhost")]
+    redis_host: String,
+    /// The redis port
+    #[arg(long, default_value = "6379")]
+    redis_port: u16,
+    /// The redis password
+    #[arg(long, default_value = "")]
+    redis_pwd: String,
 }
 
 // TBD
@@ -205,9 +214,10 @@ async fn run_periodic_task() {
             }
         };
         // Connect to Redis
-        let _redis_client = match redis::Client::open(
-            "redis://default:gBDV7hVG4HHLbsEi8xd4euZfW0JxLZM8@redis-13139.c73.us-east-1-2.ec2.redns.redis-cloud.com:13139/",
-        )
+        let _redis_client = match redis::Client::open(format!(
+            "redis://default:{}@{}:{}",
+            args.redis_host, args.redis_port, args.redis_pwd
+        ))
         .map_err(|e| format!("Error connecting to Redis: {}", e))
         {
             Ok(client) => client,

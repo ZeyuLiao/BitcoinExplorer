@@ -1,0 +1,6 @@
+FROM debian:sid-slim
+
+WORKDIR /app
+COPY target/release/ingestion .
+
+ENTRYPOINT ["./ingestion"]
