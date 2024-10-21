@@ -216,7 +216,7 @@ async fn run_periodic_task() {
         // Connect to Redis
         let _redis_client = match redis::Client::open(format!(
             "redis://default:{}@{}:{}",
-            args.redis_host, args.redis_port, args.redis_pwd
+            args.redis_pwd, args.redis_host, args.redis_port
         ))
         .map_err(|e| format!("Error connecting to Redis: {}", e))
         {

@@ -36,7 +36,10 @@ docker-run:
 	--rpc-url $(RPC_URL) \
 	--db-user $(MYSQL_USER) \
 	--db-pwd $(MYSQL_PASSWORD) \
-	--db-host $(MYSQL_HOST)
+	--db-host $(MYSQL_HOST)\
+	--redis-host $(REDIS_HOST) \
+	--redis-port $(REDIS_PORT) \
+	--redis-pwd $(REDIS_PASSWORD)
 
 # Clean docker container
 .PHONY: docker-clean
