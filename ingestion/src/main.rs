@@ -60,16 +60,6 @@ pub struct BlockInfo {
     // pub transactions: Vec<Transaction>,
 }
 
-// #[derive(Debug)]
-// struct BlockchainMetrics {
-//     block_height: u64,
-//     blockchain_size: u64,
-//     network_hashrate: f64,
-//     difficulty: f64,
-//     mempool_size: usize,
-//     total_supply: f64,
-// }
-
 fn initialize_connection() -> Result<Pool, Box<dyn Error>> {
     let args = Args::parse();
     let opts = OptsBuilder::new()
